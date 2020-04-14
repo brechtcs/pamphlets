@@ -1,0 +1,27 @@
+{
+  "name": "pamphlets",
+  "version": "0.0.1",
+  "description": "Publish pamphlets using email",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mailparser": "^2.7.7",
+    "nodemailer": "^6.4.6",
+    "smtp-server": "^3.6.0",
+    "stdrun": "^5.1.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pamphlets/pamphlets.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pamphlets/pamphlets/issues"
+  },
+  "homepage": "https://github.com/pamphlets/pamphlets#readme",
+  "author": "Brecht Savelkoul <brecht.savelkoul@alumni.lse.ac.uk>",
+  "license": "AGPL-3.0-or-later"
+}
