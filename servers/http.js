@@ -1,23 +1,18 @@
+var { join } = require('path')
+var Mold = require('express-mold')
 var Pamphlet = require('../models/pamphlet')
 var express = require('express')
 
 module.exports.serve = function () {
+  var mold = new Mold()
   var server = express()
 
+  server.set('views', join(__dirname, '../views'))
+  server.set('view engine', 'html')
+  server.engine('html', mold.engine(server, 'html'))
+
   server.get('/', function (req, res) {
-    res.writeHead(200)
-    res.end(`<!doctype html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <title>pamphlets</title>
-        </head>
-        <body>
-          <h1>Pamphlets</h1>
-          ${Pamphlet.list().map(p => `<article>${p}</article>`).join('\n')}
-        </body>
-      </html>
-    `)
+    res.render('home', { pamphlets: Pamphlet.list() })
   })
 
   return new Promise(function (resolve, reject) {
