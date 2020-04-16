@@ -7,9 +7,18 @@ module.exports.serve = function () {
     authOptional: true,
 
     async onData(stream, session, done) {
-      var data = await simpleParser(stream)
-      Pamphlet.publish(data.html || data.textAsHtml)
-      done()
+      try {
+        var data = await simpleParser(stream)
+        var pamphlet = {
+          content: data.html || data.textAsHtml,
+          author: data.from.text
+        }
+
+        Pamphlet.publish(pamphlet)
+        done()
+      } catch (err) {
+        done(err)
+      }
     }
   })
 

@@ -12,7 +12,9 @@
     "mailparser": "^2.7.7",
     "nodemailer": "^6.4.6",
     "smtp-server": "^3.6.0",
-    "stdrun": "^5.1.0"
+    "stdopt": "^10.2.0",
+    "stdrun": "^5.1.0",
+    "verror": "^1.10.0"
   },
   "devDependencies": {},
   "repository": {

@@ -8,7 +8,10 @@
   <body>
     <h1>Pamphlets</h1>
     <<for pamphlet $in.pamphlets>>
-      <article><<h pamphlet>></article>
+      <article>
+        <address><<t pamphlet.author>></address>
+        <<h pamphlet.content>>
+      </article>
     <</for>>
   </body>
 </html>
