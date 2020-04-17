@@ -3,13 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>pamphlets</title>
+    <title><<t $in.author.name>> - pamphlets</title>
   </head>
   <body>
-    <h1>Pamphlets</h1>
-    <<for pamphlet $in.pamphlets>>
+    <h1><<t $in.author.name>></h1>
+    <<for pamphlet $in.author.pamphlets>>
       <article>
-        <address><<t pamphlet.author.name>></address>
         <<h pamphlet.content>>
       </article>
     <</for>>

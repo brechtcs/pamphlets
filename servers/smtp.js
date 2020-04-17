@@ -1,6 +1,6 @@
+var { Pamphlet } = require('../models/pamphlet')
 var { SMTPServer } = require('smtp-server')
 var { simpleParser } = require('mailparser')
-var Pamphlet = require('../models/pamphlet')
 
 module.exports.serve = function () {
   var server = new SMTPServer({
@@ -17,6 +17,7 @@ module.exports.serve = function () {
         Pamphlet.publish(pamphlet)
         done()
       } catch (err) {
+        console.log(err)
         done(err)
       }
     }

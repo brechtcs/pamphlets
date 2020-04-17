@@ -1,13 +1,11 @@
-var Author = require('./author')
 var Opt = require('stdopt/base')
 var VError = require('verror')
 var hash = require('stdopt/hash')
 var string = require('stdopt/string')
 
-var pamphlets = []
 var struct = {
-  content: string,
-  author: Author
+  author: string,
+  content: string
 }
 
 class Pamphlet extends Opt {
@@ -19,26 +17,25 @@ class Pamphlet extends Opt {
   }
 
   static publish (p) {
-    pamphlets.push(new Pamphlet(p).use())
-  }
-
-  static list () {
-    return Array.from(pamphlets)
+    var { Author } = require('./author')
+    var author = Author.from(p.author)
+    author.publish(new Pamphlet(p))
   }
 
   get author () {
-    return this.use(function (err, p) {
+    return this.use(function author (err, p) {
       if (err) throw new VError(err, 'Cannot get author')
-      return p.author
+      var { Author } = require('./author')
+      return Author.from(p.author)
     })
   }
 
   get content () {
-    return this.use(function (err, p) {
+    return this.use(function content (err, p) {
       if (err) throw new VError(err, 'Cannot get content')
       return p.content
     })
   }
 }
 
-module.exports = Opt.construct(Pamphlet)
+module.exports.Pamphlet = Pamphlet
