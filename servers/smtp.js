@@ -1,6 +1,7 @@
 var { Pamphlet } = require('../models/pamphlet')
 var { SMTPServer } = require('smtp-server')
 var { simpleParser } = require('mailparser')
+var listen = require('./listen')
 
 module.exports.serve = function () {
   var server = new SMTPServer({
@@ -23,10 +24,5 @@ module.exports.serve = function () {
     }
   })
 
-  return new Promise(function (resolve, reject) {
-    server.listen(2525, function (err) {
-      if (err) return reject(err)
-      resolve(this.address())
-    })
-  })
+  return listen(server, 2525)
 }

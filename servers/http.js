@@ -3,6 +3,7 @@ var { join } = require('path')
 var Mold = require('express-mold')
 var VError = require('verror')
 var express = require('express')
+var listen = require('./listen')
 
 module.exports.serve = function () {
   var mold = new Mold()
@@ -29,10 +30,5 @@ module.exports.serve = function () {
     next()
   })
 
-  return new Promise(function (resolve, reject) {
-    server.listen(8080, function (err) {
-      if (err) return reject(err)
-      resolve(this.address())
-    })
-  })
+  return listen(server, 8080)
 }
