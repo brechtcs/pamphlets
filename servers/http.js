@@ -1,4 +1,4 @@
-var { Author } = require('../models/author')
+var { Author } = require('../models/core')
 var { join } = require('path')
 var Mold = require('express-mold')
 var VError = require('verror')
@@ -15,7 +15,7 @@ module.exports.serve = function () {
 
   server.get('/', function (req, res) {
     var authors = Author.list()
-    var pamphlets = authors.map(a => a.pamphlets.slice(-1)).flat()
+    var pamphlets = authors.map(a => a.recent).flat()
     res.render('home', { pamphlets })
   })
 

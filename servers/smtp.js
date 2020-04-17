@@ -1,4 +1,4 @@
-var { Pamphlet } = require('../models/pamphlet')
+var { Pamphlet } = require('../models/core')
 var { SMTPServer } = require('smtp-server')
 var { simpleParser } = require('mailparser')
 var listen = require('./listen')
