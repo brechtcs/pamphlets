@@ -20,9 +20,14 @@ module.exports.serve = function () {
   })
 
   server.get('/:handle', function (req, res) {
-    var { handle } = req.params
-    var author = Author.get(handle)
+    var author = Author.get(req.params.handle)
     res.render('author', { author })
+  })
+
+  server.get('/:handle/:pamphlet', function (req, res) {
+    var author = Author.get(req.params.handle)
+    var pamphlet = author.pamphlets[req.params.pamphlet]
+    res.render('pamphlet', { author, pamphlet })
   })
 
   server.use(function (err, req, res, next) {
